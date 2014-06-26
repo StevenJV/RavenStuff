@@ -2,6 +2,7 @@
 using System.Linq;
 using Raven.Client;
 using Raven.Client.Document;
+using RavenStuff.Things;
 
 namespace ReadFromRaven
 {
@@ -12,14 +13,19 @@ namespace ReadFromRaven
         //read from the database
         documentStore.Initialize();
         using (IDocumentSession session = documentStore.OpenSession()) {
-          global::Article.Article articleInfo = session.Query<global::Article.Article>()
-            .Where(a => a.Title == "Blade Runner")
-            .First<global::Article.Article>();
-          articleInfo.DumpToConsole();
+          //just one, by name
+          //  Article articleInfo = session.Query<Article>()
+          //    .Where(a => a.Title == "Blade Runner")
+          //    .First<Article>();
+
+          //all
+          var articles = session.Advanced.LuceneQuery<Movie>().ToList();
+          articles.ForEach(article => article.DumpToConsole());
+
           Console.ReadKey();
+
         }
       }
-
     }
   }
 }

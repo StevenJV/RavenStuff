@@ -1,6 +1,7 @@
 ﻿using System;
 using Raven.Client;
 using Raven.Client.Document;
+using RavenStuff.Things;
 
 namespace WriteToRaven
 {
@@ -9,7 +10,7 @@ namespace WriteToRaven
     static void Main(string[] args) {
       using (IDocumentStore documentStore = new DocumentStore() { ConnectionStringName = "MyRavenConStr" }) {
         //write to the database
-        var ravenIntro = new global::Article.Article() {
+        var ravenIntro = new Article() {
           Title = "Blade Runner",
           Quote = "'More human than human' is our motto.",
           Director = "Ridley Scott",

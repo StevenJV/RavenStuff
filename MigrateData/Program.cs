@@ -1,6 +1,7 @@
 ﻿using Raven.Client;
 using Raven.Client.Document;
 using System.Linq;
+using RavenStuff.Things;
 
 namespace MigrateData
 {
@@ -9,21 +10,21 @@ namespace MigrateData
     static void Main(string[] args) {
 
       using (IDocumentStore documentStore = new DocumentStore() { ConnectionStringName = "MyRavenConStr" }) {
-        documentStore.Conventions.RegisterIdConvention<global::Movie.Movie>(
+        documentStore.Conventions.RegisterIdConvention<Movie>(
                (dbname, commands, movie) => CreateMovieId(movie.Title, movie.ReleaseYear));
 
         documentStore.Initialize();
 
         using (IDocumentSession session = documentStore.OpenSession()) {
-          var articles = session.Advanced.LuceneQuery<global::Article.Article>().ToList();
+          var articles = session.Advanced.LuceneQuery<Article>().ToList();
           articles.ForEach(article => ConvertArticleToMovie(article, session));
           session.SaveChanges();
         }
       }
     }
 
-    private static void ConvertArticleToMovie(global::Article.Article obj, IDocumentSession session) {
-      var movieInfo = new global::Movie.Movie {
+    private static void ConvertArticleToMovie(Article obj, IDocumentSession session) {
+      var movieInfo = new Movie {
         Quote = obj.Quote,
         CreatedDate = obj.CreatedDate,
         Title = obj.Title,

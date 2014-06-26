@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Movie
+using System.ComponentModel;
+// ReSharper disable once CheckNamespace
+namespace RavenStuff.Things
 {
   public class Movie
   {
@@ -14,5 +11,13 @@ namespace Movie
     public string Title { get; set; }
     public string Director { get; set; }
     public string ReleaseYear { get; set; }
+
+    public void DumpToConsole() {
+      foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(this)) {
+        string name = descriptor.Name;
+        object value = descriptor.GetValue(this);
+        Console.WriteLine("{0}={1}", name, value);
+      }
+    }
   }
 }

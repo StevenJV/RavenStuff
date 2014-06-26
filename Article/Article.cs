@@ -1,7 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace Article
+// ReSharper disable once CheckNamespace
+namespace RavenStuff.Things
 {
   public class Article
   {
