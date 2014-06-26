@@ -56,9 +56,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Article\Article.csproj">
-      <Project>{44eb4899-4efa-42ea-ac60-1946fd823f07}</Project>
-      <Name>Article</Name>
+    <ProjectReference Include="..\Movie\Movie.csproj">
+      <Project>{e537420c-af91-4d9b-ae62-d8d9afaa9250}</Project>
+      <Name>Movie</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

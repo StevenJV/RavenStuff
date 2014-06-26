@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Raven.Client;
 using Raven.Client.Document;
 using RavenStuff.Things;
@@ -9,12 +10,14 @@ namespace WriteToRaven
   {
     static void Main(string[] args) {
       using (IDocumentStore documentStore = new DocumentStore() { ConnectionStringName = "MyRavenConStr" }) {
+        documentStore.Conventions.RegisterIdConvention<Movie>(
+       (dbname, commands, movie) => CreateMovieId(movie.Title, movie.ReleaseYear));
         //write to the database
-        var ravenIntro = new Article() {
-          Title = "Blade Runner",
-          Quote = "'More human than human' is our motto.",
-          Director = "Ridley Scott",
-          CreatedDate = DateTime.UtcNow.ToString(),
+        var ravenIntro = new Movie() {
+          Title = "Test Title",
+          Quote = "we don't need no stinkin' quotes",
+          Director = "Steven",
+          CreatedDate = DateTime.UtcNow.ToString(CultureInfo.InvariantCulture),
           ReleaseYear = "1982"
         };
         documentStore.Initialize();
@@ -26,6 +29,14 @@ namespace WriteToRaven
         
       }
 
+    }
+
+    //TODO: move this to the Movie class? 
+    private static string CreateMovieId(string title, string year) {
+      const int maxLength = 1023;
+      var id = title.Replace(" ", string.Empty) + year;
+      id = id.Replace("\\", string.Empty);
+      return id.Length <= maxLength ? id : id.Substring(0, maxLength);
     }
   }
 }
