@@ -19,8 +19,8 @@ namespace ReadFromRaven
           //    .First<Article>();
 
           //all
-          var articles = session.Advanced.LuceneQuery<Movie>().ToList();
-          articles.ForEach(article => article.DumpToConsole());
+          var movies = session.Advanced.LuceneQuery<Movie>().ToList();
+          movies.ForEach(article => article.DumpToConsole());
 
           Console.ReadKey();
 

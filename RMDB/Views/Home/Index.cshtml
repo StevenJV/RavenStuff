@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "RMDB - Ravne Movie Database";
+}
+
+<div class="jumbotron">
+    <h1>RMDB</h1>
+    <p class="lead">Raven Movie Database</p>
+</div>
+
+<ul>
+  @foreach (var movie in ViewBag.data)
+  {
+  <li>@movie</li>
+  }
+</ul>

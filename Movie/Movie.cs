@@ -19,5 +19,11 @@ namespace RavenStuff.Things
         Console.WriteLine("{0}={1}", name, value);
       }
     }
+
+    public string HtmlRow()
+    {
+      string output = this.Title + ", " + this.ReleaseYear;
+      return output;
+    }
   }
 }
