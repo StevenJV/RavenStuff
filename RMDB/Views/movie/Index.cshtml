@@ -1,0 +1,14 @@
+﻿@{
+  ViewBag.Title = "Movies";
+}
+
+    <div>
+      <h1>Movie List</h1>
+    </div>
+<div>
+  <ul>
+    @foreach (var movie in ViewBag.data) {
+      <li>@movie</li>
+    }
+  </ul>
+</div>

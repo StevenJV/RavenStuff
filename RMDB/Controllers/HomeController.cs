@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using Raven.Client;
 using Raven.Client.Document;
@@ -14,19 +15,11 @@ namespace RMDB.Controllers
     public ActionResult Index() {
 
       {
-        using (IDocumentStore documentStore = new DocumentStore() { ConnectionStringName = "MyRavenConStr" }) {
-          documentStore.Initialize();
-          List<string> movieList = new List<string>();
-          using (IDocumentSession session = documentStore.OpenSession()) {
-            var movies = session.Advanced.LuceneQuery<Movie>().ToList();
-            movies.ForEach(movie => movieList.Add(movie.HtmlRow()));
-            ViewBag.data = movieList;
-            return View();
-          }
-        }
+        ViewBag.Message = "Your favorite <a href=\"/Movie/\">movie</a> database, using RavenDB.";
+        return View();
       }
-
     }
+
 
     public ActionResult About() {
       ViewBag.Message = "Your application description page.";
@@ -40,4 +33,5 @@ namespace RMDB.Controllers
       return View();
     }
   }
+
 }
