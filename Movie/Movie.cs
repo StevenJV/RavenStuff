@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 // ReSharper disable once CheckNamespace
 namespace RavenStuff.Things
@@ -20,9 +21,18 @@ namespace RavenStuff.Things
       }
     }
 
-    public string HtmlRow()
-    {
-      string output = this.Title + ", " + this.ReleaseYear;
+    public List<string> DumpToList() {
+      List<string> propList = new List<string>();
+      foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(this)) {
+        string name = descriptor.Name;
+        object value = descriptor.GetValue(this);
+        propList.Add(string.Format("{0}={1}", name, value));
+      }
+      return propList;
+    }
+
+    public string HtmlRow() {
+      string output = "<a href=\"" + this.Id + "\">" + this.Title + "</a>, " + this.ReleaseYear;
       return output;
     }
   }
