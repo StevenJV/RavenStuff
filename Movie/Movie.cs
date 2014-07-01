@@ -6,12 +6,26 @@ namespace RavenStuff.Things
 {
   public class Movie
   {
-    public string Id { get; set; }
+    private string _id;
+    public string Id
+    {
+      get
+      {
+      const int maxLength = 1023;
+      _id = this.Title.Replace(" ", string.Empty) + this.ReleaseYear;
+      _id = _id.Replace("\\", string.Empty);
+      _id = _id.Replace("'", string.Empty);
+      return _id.Length <= maxLength ? _id : _id.Substring(0, maxLength);
+      }
+      set { this._id = value; }
+    }
+
+    public string Title { get; set; }
+    public string ReleaseYear { get; set; }
     public string Quote { get; set; }
     public string CreatedDate { get; set; }
-    public string Title { get; set; }
     public string Director { get; set; }
-    public string ReleaseYear { get; set; }
+    public Dictionary<string ,string > ActorList { get; set; } 
 
     public void DumpToConsole() {
       foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(this)) {
