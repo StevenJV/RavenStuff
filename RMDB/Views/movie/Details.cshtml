@@ -1,0 +1,23 @@
+﻿@{
+  ViewBag.Title = @ViewBag.data.Title;
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+  <h1>@ViewBag.data.Title</h1>
+  <em>"@ViewBag.data.Quote"</em>
+  <hr/>
+</div>
+<div>
+  <p>released: @ViewBag.data.ReleaseYear</p>
+  <p>director: @ViewBag.data.Director</p>
+  <ul>cast:
+    @{
+      var personList = ViewBag.data.ActorList as Dictionary<string, string>;
+      foreach (var person in personList) {
+        <li> @person.Key : @person.Value </li>
+      }
+    }
+  </ul>
+</div>

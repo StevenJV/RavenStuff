@@ -14,25 +14,36 @@ namespace RMDB.Controllers
   {
 
     //
-    // GET: /movie/ or /movie/StarWars1977
-    public ActionResult Index(string id) {
-
+    // GET: /movie/ - returns a list of movies
+    public ActionResult Index() {
       using (IDocumentStore documentStore = new DocumentStore() { ConnectionStringName = "MyRavenConStr" }) {
         documentStore.Initialize();
         using (IDocumentSession session = documentStore.OpenSession()) {
-          if ( id.IsNullOrWhiteSpace() || "index" == id.ToLower()) {
-            var movieList = new List<string>();
-            var movies = session.Advanced.LuceneQuery<Movie>().ToList();
-            movies.ForEach(movie => movieList.Add(movie.HtmlRow()));
-            ViewBag.data = movieList;
-          } else {
-            var movieInfo = session.Load<Movie>(id);
-            ViewBag.data = movieInfo.DumpToList();
-          }
+          var movieList = new List<string>();
+          var movies = session.Advanced.LuceneQuery<Movie>().ToList();
+          movies.ForEach(movie => movieList.Add(movie.HtmlRow()));
+          ViewBag.data = movieList;
           return View();
         }
       }
     }
+
+
+    //
+    // GET: /movie/details/StarWars1977 - returns details of specific movie
+    public ActionResult Details(string id) {
+
+      using (IDocumentStore documentStore = new DocumentStore() { ConnectionStringName = "MyRavenConStr" }) {
+        documentStore.Initialize();
+        using (IDocumentSession session = documentStore.OpenSession()) {
+          var movieInfo = session.Load<Movie>(id);
+          ViewBag.data = movieInfo;
+          return View();
+        }
+      }
+    }
+
+
 
   }
 }

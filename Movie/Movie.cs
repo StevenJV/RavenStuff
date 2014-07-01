@@ -46,7 +46,7 @@ namespace RavenStuff.Things
     }
 
     public string HtmlRow() {
-      string output = "<a href=\"" + this.Id + "\">" + this.Title + "</a>, " + this.ReleaseYear;
+      string output = "<a href=\"/Movie/Details/" + Id + "\">" + Title + "</a>, " + ReleaseYear;
       return output;
     }
   }
