@@ -8,7 +8,7 @@
 <div>
   <ul>
     @foreach (var item in ViewBag.data) {
-      <li>@item</li>
+      <li>@Html.Raw(item)</li>
     }
   </ul>
 </div>
