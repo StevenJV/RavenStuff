@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Actors";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+  <h1>Actor List</h1>
+</div>
+<div>
+  <ul>
+    @foreach (var item in ViewBag.data) {
+      <li>@Html.Raw(item)</li>
+    }
+  </ul>
+</div>
