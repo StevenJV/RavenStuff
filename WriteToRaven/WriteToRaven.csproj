@@ -56,6 +56,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Actor\Actor.csproj">
+      <Project>{4AB79DEB-589E-4BBD-97B8-3E95B5D09C87}</Project>
+      <Name>Actor</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Movie\Movie.csproj">
       <Project>{e537420c-af91-4d9b-ae62-d8d9afaa9250}</Project>
       <Name>Movie</Name>
