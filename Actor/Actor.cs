@@ -19,6 +19,7 @@ namespace RavenStuff.Things
       }
       public string Name { get; set; }
       public Dictionary<string, string> MovieList { get; set; } // title, year 
+      public DateTime BirthDate { get; set; }
 
       public void EnsureMovieExists(string movieName, string movieYear) {
         if (MovieList == null) MovieList = new Dictionary<string, string>();
