@@ -25,7 +25,7 @@ namespace RavenStuff.Things
     public string Quote { get; set; }
     public string CreatedDate { get; set; }
     public string Director { get; set; }
-    public Dictionary<string ,string > ActorList { get; set; } 
+    public Dictionary<string ,string > ActorList { get; set; } // actor name, character name
 
     public void DumpToConsole() {
       foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(this)) {
@@ -49,5 +49,6 @@ namespace RavenStuff.Things
       string output = "<a href=\"/Movie/Details/" + Id + "\">" + Title + "</a>, " + ReleaseYear;
       return output;
     }
+
   }
 }
