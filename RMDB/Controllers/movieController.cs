@@ -35,11 +35,12 @@ namespace RMDB.Controllers
 
       using (IDocumentStore documentStore = new DocumentStore() { ConnectionStringName = "MyRavenConStr" }) {
         documentStore.Initialize();
-        using (IDocumentSession session = documentStore.OpenSession()) {
-          var movieInfo = session.Load<Movie>(id);
-          ViewBag.data = movieInfo;
-          return View();
-        }
+        if (null != id)
+          using (IDocumentSession session = documentStore.OpenSession()) {
+            var movieInfo = session.Load<Movie>(id);
+            ViewBag.data = movieInfo;
+          }
+        return View();
       }
     }
 

@@ -12,12 +12,17 @@
 <div>
   <p>released: @ViewBag.data.ReleaseYear</p>
   <p>director: @ViewBag.data.Director</p>
-  <ul>cast:
+  <table>cast:
     @{
-      var personList = ViewBag.data.ActorList as Dictionary<string, string>;
-      foreach (var person in personList) {
-        <li> @person.Key : @person.Value </li>
-      }
+      var personList = ViewBag.data.HtmlActorList as List<string>;
+  if (personList != null) {
+    foreach (var person in personList)
+    {
+      <tr>
+        <td>@Html.Raw(person)</td>
+      </tr>
     }
-  </ul>
+  }
+}
+  </table>
 </div>

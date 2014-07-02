@@ -11,11 +11,13 @@
 <div>
   <p>birthdate: @ViewBag.data.BirthDate</p>
   <ul>
-    works:
     @{
-      var movieList = ViewBag.data.MovieList as Dictionary<string, string>;
-      foreach (var movie in movieList) {
-        <li> @movie.Key : @movie.Value </li>
+      var movieList = ViewBag.data.HtmlMovieList as List<string>;
+      if (null != movieList)
+      {
+        foreach (var movie in movieList) {
+          <li>@Html.Raw(movie)</li>
+        }
       }
     }
   </ul>

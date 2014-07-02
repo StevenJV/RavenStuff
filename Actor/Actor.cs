@@ -9,21 +9,46 @@ namespace RavenStuff.Things
     private string _id;
     public string Id {
       get {
-        const int maxLength = 1023;
-        _id = this.Name.Replace(" ", string.Empty);
-        _id = _id.Replace("\\", string.Empty);
-        _id = _id.Replace("'", string.Empty);
-        return _id.Length <= maxLength ? _id : _id.Substring(0, maxLength);
+        return CreateId(Name);
       }
-      set { this._id = value; }
+      set { _id = value; }
     }
     public string Name { get; set; }
     public Dictionary<string, string> MovieList { get; set; } // title, year 
     public DateTime BirthDate { get; set; }
 
+
+    private List<string> _htmlMovieList;
+    public List<string> HtmlMovieList {
+      get { return GethHtmlMovieList(); }
+      set { _htmlMovieList = value; }
+    }
+
+    private List<string> GethHtmlMovieList() {
+      List<string> htmlMovieList = new List<string>();
+      if (null != MovieList) {
+        foreach (KeyValuePair<string, string> movie in MovieList) {
+          var htmlLine = "<a href=\"/movie/details/" + CreateId(movie.Key, movie.Value) + "\">" + movie.Key + "</a>";
+          htmlMovieList.Add(htmlLine);
+        }
+      }
+      return htmlMovieList;
+    }
+
+
+
     public void EnsureMovieExists(string movieName, string movieYear) {
       if (MovieList == null) MovieList = new Dictionary<string, string>();
       if (!MovieList.ContainsKey(movieName)) MovieList.Add(movieName, movieYear);
+    }
+
+    private string CreateId(string name, string year = "") {
+      const int maxLength = 1023;
+      _id = name.Replace(" ", string.Empty) + year;
+      _id = _id.Replace("\\", string.Empty);
+      _id = _id.Replace("'", string.Empty);
+      _id = _id.Replace(".", string.Empty);
+      return _id.Length <= maxLength ? _id : _id.Substring(0, maxLength);
     }
 
     public string HtmlRow() {

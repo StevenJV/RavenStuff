@@ -45,6 +45,7 @@ namespace ActorsFromMovies
       var id = actorName.Replace(" ", string.Empty);
       id = id.Replace("\\", string.Empty);
       id = id.Replace("'", string.Empty);
+      id = id.Replace(".", string.Empty);
       return id.Length <= maxLength ? id : id.Substring(0, maxLength);
     }
   }
