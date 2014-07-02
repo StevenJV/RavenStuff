@@ -10,9 +10,6 @@ namespace MigrateData
     static void Main(string[] args) {
 
       using (IDocumentStore documentStore = new DocumentStore() { ConnectionStringName = "MyRavenConStr" }) {
-        documentStore.Conventions.RegisterIdConvention<Movie>(
-               (dbname, commands, movie) => CreateMovieId(movie.Title, movie.ReleaseYear));
-
         documentStore.Initialize();
 
         using (IDocumentSession session = documentStore.OpenSession()) {

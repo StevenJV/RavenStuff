@@ -11,7 +11,6 @@ namespace WriteToRaven
   {
     static void Main(string[] args) {
       using (IDocumentStore documentStore = new DocumentStore() { ConnectionStringName = "MyRavenConStr" }) {
-        //documentStore.Conventions.RegisterIdConvention<Movie>((dbname, commands, movie) => CreateMovieId(movie.Title, movie.ReleaseYear));
         var movieInfo = new Movie
         {
           Title = "Ender's Game",
