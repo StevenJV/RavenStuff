@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EditMovie", "EditMovie\Edit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMDB", "RMDB\RMDB.csproj", "{FE2DAF2D-1801-4B89-82B4-552C314338F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthorsFromMovies", "AuthorsFromMovies\AuthorsFromMovies.csproj", "{588782D8-5556-4419-A4E3-167E6D05813E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorsFromMovies", "ActorsFromMovies\ActorsFromMovies.csproj", "{588782D8-5556-4419-A4E3-167E6D05813E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Actor", "Actor\Actor.csproj", "{4AB79DEB-589E-4BBD-97B8-3E95B5D09C87}"
 EndProject
