@@ -28,7 +28,7 @@ namespace RavenStuff.Things
       List<string> htmlActorList = new List<string>();
       if (null != ActorList) {
         foreach (KeyValuePair<string, string> actor in ActorList) {
-          var htmlLine = "<td><a href=\"/actor/details/" + CreateId(actor.Key) + "\">" + actor.Key + "</a></td><td>" + actor.Value+"<td>";
+          var htmlLine = "<td><a href=\"/actor/details/" + CreateId(actor.Key) + "\">" + actor.Key + "</a></td><td>" + actor.Value+"</td>";
           htmlActorList.Add(htmlLine);
         }
       }

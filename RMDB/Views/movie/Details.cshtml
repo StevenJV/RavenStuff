@@ -7,22 +7,29 @@
 <div>
   <h1>@ViewBag.data.Title</h1>
   <em>"@ViewBag.data.Quote"</em>
-  <hr/>
+  <hr />
 </div>
 <div>
   <p>released: @ViewBag.data.ReleaseYear</p>
   <p>director: @ViewBag.data.Director</p>
-  <table>cast:
-    @{
-      var personList = ViewBag.data.HtmlActorList as List<string>;
-  if (personList != null) {
-    foreach (var person in personList)
-    {
+  <table id="sortedTable" class="tablesorter">
+    <thead>
       <tr>
-        <td>@Html.Raw(person)</td>
+        <th>Actor</th>
+        <th>Character</th>
       </tr>
-    }
-  }
-}
+    </thead>
+    <tbody>
+      @{
+        var actorList = ViewBag.data.HtmlActorList as List<string>;
+        if (actorList != null) {
+          foreach (var actorRow in actorList) {
+            <tr>
+              @Html.Raw(actorRow)
+            </tr>
+          }
+        }
+      }
+    </tbody>
   </table>
 </div>

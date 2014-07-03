@@ -9,13 +9,17 @@
   <hr />
 </div>
 <div>
-  <table>
+  <table id="sortedTable" class="tablesorter">
+    <thead>
+      <tr>
+        <th>Movie</th>
+      </tr>
+    </thead>
     @{
       var movieList = ViewBag.data.HtmlMovieList as List<string>;
-      if (null != movieList)
-      {
-        foreach (var movie in movieList) {
-          <tr>@Html.Raw(movie)</tr>
+      if (null != movieList) {
+        foreach (var movieRow in movieList) {
+         @Html.Raw(movieRow)
         }
       }
     }
