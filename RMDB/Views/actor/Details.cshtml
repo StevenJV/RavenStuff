@@ -9,16 +9,15 @@
   <hr />
 </div>
 <div>
-  <p>birthdate: @ViewBag.data.BirthDate</p>
-  <ul>
+  <table>
     @{
       var movieList = ViewBag.data.HtmlMovieList as List<string>;
       if (null != movieList)
       {
         foreach (var movie in movieList) {
-          <li>@Html.Raw(movie)</li>
+          <tr>@Html.Raw(movie)</tr>
         }
       }
     }
-  </ul>
+  </table>
 </div>

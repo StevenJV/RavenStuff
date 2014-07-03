@@ -21,7 +21,7 @@ namespace RMDB.Controllers
         documentStore.Initialize();
         using (IDocumentSession session = documentStore.OpenSession()) {
           var movieList = new List<string>();
-          var movies = session.Advanced.LuceneQuery<Movie>().ToList();
+          var movies = session.Advanced.LuceneQuery<Movie>().OrderBy("Title").ToList();
           movies.ForEach(movie => movieList.Add(movie.HtmlRow()));
           ViewBag.data = movieList;
           return View();

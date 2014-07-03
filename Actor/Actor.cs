@@ -28,7 +28,7 @@ namespace RavenStuff.Things
       List<string> htmlMovieList = new List<string>();
       if (null != MovieList) {
         foreach (KeyValuePair<string, string> movie in MovieList) {
-          var htmlLine = "<a href=\"/movie/details/" + CreateId(movie.Key, movie.Value) + "\">" + movie.Key + "</a>";
+          var htmlLine = "<td><a href=\"/movie/details/" + CreateId(movie.Key, movie.Value) + "\">" + movie.Key + "</a></td>";
           htmlMovieList.Add(htmlLine);
         }
       }

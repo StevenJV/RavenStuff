@@ -24,7 +24,7 @@ namespace RMDB.Controllers
             using (IDocumentSession session = documentStore.OpenSession())
             {
               var actorList = new List<string>();
-              var actors = session.Advanced.LuceneQuery<Actor>().ToList();
+              var actors = session.Advanced.LuceneQuery<Actor>().OrderBy("Name").ToList();
               actors.ForEach(actor => actorList.Add(actor.HtmlRow()));
               ViewBag.data = actorList;
               return View();
