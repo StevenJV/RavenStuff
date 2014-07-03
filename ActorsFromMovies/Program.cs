@@ -21,7 +21,7 @@ namespace ActorsFromMovies
                                       foreach (KeyValuePair<string, string> actor in actorList)
                                       {
                                         Actor actorInfo = LoadOrCreate(actorSession, actor.Key);
-                                        actorInfo.EnsureMovieExists(movie.Title, movie.ReleaseYear);
+                                        actorInfo.EnsureMovieExists(movie.Title+", "+movie.ReleaseYear, actor.Value);
                                       }
                                       actorSession.SaveChanges();
                                     }

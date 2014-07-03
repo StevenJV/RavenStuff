@@ -13,15 +13,18 @@
     <thead>
       <tr>
         <th>Movie</th>
+        <th>Character</th>
       </tr>
     </thead>
-    @{
-      var movieList = ViewBag.data.HtmlMovieList as List<string>;
-      if (null != movieList) {
-        foreach (var movieRow in movieList) {
-         @Html.Raw(movieRow)
+    <tbody>
+      @{
+        var movieList = ViewBag.data.HtmlMovieList as List<string>;
+        if (null != movieList) {
+          foreach (var movieRow in movieList) {
+            <tr>@Html.Raw(movieRow)</tr>
+          }
         }
       }
-    }
+    </tbody>
   </table>
 </div>
