@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.WebPages;
 using System.Xml.Linq;
+using Microsoft.Ajax.Utilities;
 using Raven.Client;
 using Raven.Client.Document;
 using RavenStuff.Things;
@@ -33,12 +35,12 @@ namespace RMDB.Controllers
     // GET: /actor/details/CarrieFisher - returns details of a specific actor
     public ActionResult Details(string id)
     {
-      using (IDocumentStore documentStore = new DocumentStore() {ConnectionStringName = "MyRavenConStr"})
-      {
+      if (id.IsNullOrWhiteSpace() || id.IsEmpty()) { return RedirectToAction("Index", "Actor"); }
+      using (IDocumentStore documentStore = new DocumentStore() {ConnectionStringName = "MyRavenConStr"}) {
         documentStore.Initialize();
-        using (IDocumentSession session = documentStore.OpenSession())
-        {
+        using (IDocumentSession session = documentStore.OpenSession()) {
           var actorInfo = session.Load<Actor>(id);
+          if (null == actorInfo) { return RedirectToAction("Index", "Actor"); }
           ViewBag.data = actorInfo;
           return View();
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.WebPages;
 using Microsoft.Ajax.Utilities;
 using Raven.Client;
 using Raven.Client.Document;
@@ -32,15 +33,15 @@ namespace RMDB.Controllers
     //
     // GET: /movie/details/StarWars1977 - returns details of specific movie
     public ActionResult Details(string id) {
-
+      if (id.IsNullOrWhiteSpace() || id.IsEmpty()) { return RedirectToAction("Index", "Movie"); }
       using (IDocumentStore documentStore = new DocumentStore() { ConnectionStringName = "MyRavenConStr" }) {
         documentStore.Initialize();
-        if (null != id)
-          using (IDocumentSession session = documentStore.OpenSession()) {
-            var movieInfo = session.Load<Movie>(id);
-            ViewBag.data = movieInfo;
-          }
-        return View();
+        using (IDocumentSession session = documentStore.OpenSession()) {
+          var movieInfo = session.Load<Movie>(id);
+          if (null == movieInfo) { return RedirectToAction("Index", "Movie"); }
+          ViewBag.data = movieInfo;
+          return View();
+        }
       }
     }
 
