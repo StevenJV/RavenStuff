@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+
 // ReSharper disable once CheckNamespace
 namespace RavenStuff.Things
 {
-  public class Actor : Things.RavenDocument
+  public class Actor : RavenStuff.Things.RavenDocument
   {
     public string Id {
       get {

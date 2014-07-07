@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Raven.Client;
 using Raven.Client.Document;
-using RavenStuff.Things;
 
 namespace EditMovie
 {
