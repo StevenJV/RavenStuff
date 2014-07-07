@@ -14,6 +14,7 @@ namespace RavenStuff.Things
         _id = _id.Replace("'", string.Empty);
         _id = _id.Replace(".", string.Empty);
         _id = _id.Replace(",", string.Empty);
+        _id = _id.Replace(":", string.Empty);
         return _id.Length <= maxLength ? _id : _id.Substring(0, maxLength);
       }
 
