@@ -16,7 +16,7 @@ namespace ActorsFromMovies
         using (IDocumentSession movieSession = documentStore.OpenSession()) {
           var movies = movieSession.Advanced.LuceneQuery<Movie>().ToList();
           movies.ForEach(movie => {
-            Console.WriteLine("movie: "+ movie.Title);
+            Console.WriteLine("----> "+ movie.Title);
                                     using (IDocumentSession actorSession = documentStore.OpenSession())
                                     {
                                       Dictionary<string, string> actorList = movie.ActorList;
@@ -37,7 +37,7 @@ namespace ActorsFromMovies
       var actor = session.Load<Actor>(ActorId(actorName));
       if (actor != null)
       {
-        Console.WriteLine(actorName + " exists.");
+        Console.WriteLine("a document for "+actorName + " exists already.");
         return actor;
       }
       var pActor = new Actor { Name = actorName };
