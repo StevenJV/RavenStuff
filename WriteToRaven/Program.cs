@@ -5,6 +5,7 @@ using Raven.Client;
 using Raven.Client.Document;
 using RavenStuff.Things;
 
+
 namespace WriteToRaven
 {
   class Program
@@ -14,7 +15,6 @@ namespace WriteToRaven
         CreateMovieDocument(documentStore);
         //CreateActorDocument(documentStore);
       }
-
     }
 
     private static void CreateActorDocument(IDocumentStore documentStore)
@@ -36,26 +36,17 @@ namespace WriteToRaven
     {
       var movieInfo = new Movie
       {
-        Title = "Star Trek: Generations",
-        Quote = "I take it the odds are against us and the situation is grim?",
-        Director = "David Carson",
+        Title = "Happy Feet",
+        Quote = "Don't push me 'cause I am close to the edge. I'm trying not to lose my head.",
+        Director = "George Miller",
         CreatedDate = DateTime.UtcNow.ToString(CultureInfo.InvariantCulture),
-        ReleaseYear = "1994",
+        ReleaseYear = "2006",
         ActorList = new Dictionary<string, string>
         {
-          {"Patrick Stewart", "Picard"},
-          {"Johnathan Frakes", "Riker"},
-          {"Brent Spiner", "Data"},
-          {"LeVar Burton", "Geordi"},
-          {"Michael Dorn", "Worf"},
-          {"Gates McFadden", "Beverly"},
-          {"Marina Sirtis", "Troi"},
-          {"Malcolm McDowell", "Soran"},
-          {"James Doohan", "Scotty"},
-          {"Walter Koenig", "Chekov"},
-          {"William Shatner", "Kirk"},
-          {"Alan Ruck", "Capt. Harriman"},
-          {"Jackqueline Kim", "Demora"}
+          {"Carlos Alazraui", "Nestor"},
+          {"Lombardo Byar", "Raul"},
+          {"Robin WIlliams", "Ramon"},
+          {"Famke Janssen", "Memphis"}
         }
       };
       documentStore.Initialize();
