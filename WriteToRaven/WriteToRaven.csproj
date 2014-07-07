@@ -64,6 +64,10 @@
       <Project>{e537420c-af91-4d9b-ae62-d8d9afaa9250}</Project>
       <Name>Movie</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RavenDocument\RavenDocument.csproj">
+      <Project>{e156bce4-7cba-47d6-b519-90565848f0e6}</Project>
+      <Name>RavenDocument</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
