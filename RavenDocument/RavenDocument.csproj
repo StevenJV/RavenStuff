@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4AB79DEB-589E-4BBD-97B8-3E95B5D09C87}</ProjectGuid>
+    <ProjectGuid>{E156BCE4-7CBA-47D6-B519-90565848F0E6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Actor</RootNamespace>
-    <AssemblyName>Actor</AssemblyName>
+    <RootNamespace>RavenDocument</RootNamespace>
+    <AssemblyName>RavenDocument</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,14 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actor.cs" />
+    <Compile Include="RavenDocument.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RavenDocument\RavenDocument.csproj">
-      <Project>{e156bce4-7cba-47d6-b519-90565848f0e6}</Project>
-      <Name>RavenDocument</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
 // ReSharper disable once CheckNamespace
 namespace RavenStuff.Things
 {
-  public class Movie
+  public class Movie : RavenDocument
   {
-    private string _id;
+
     public string Id {
       get { return CreateId(Title, ReleaseYear); }
       set { _id = value; }
@@ -35,33 +33,6 @@ namespace RavenStuff.Things
       return htmlActorList;
     }
 
-    private string CreateId(string name, string year = "") {
-      const int maxLength = 1023;
-      _id = name.Replace(" ", string.Empty) + year;
-      _id = _id.Replace("\\", string.Empty);
-      _id = _id.Replace("'", string.Empty);
-      _id = _id.Replace(".", string.Empty);
-      _id = _id.Replace(",", string.Empty);
-      return _id.Length <= maxLength ? _id : _id.Substring(0, maxLength);
-    }
-
-    public void DumpToConsole() {
-      foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(this)) {
-        string name = descriptor.Name;
-        object value = descriptor.GetValue(this);
-        Console.WriteLine("{0}={1}", name, value);
-      }
-    }
-
-    public List<string> DumpToList() {
-      List<string> propList = new List<string>();
-      foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(this)) {
-        string name = descriptor.Name;
-        object value = descriptor.GetValue(this);
-        propList.Add(string.Format("{0}={1}", name, value));
-      }
-      return propList;
-    }
 
     public string HtmlRow() {
       string output = "<a href=\"/Movie/Details/" + Id + "\">" + Title + "</a>, " + ReleaseYear;

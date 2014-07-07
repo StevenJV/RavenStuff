@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 // ReSharper disable once CheckNamespace
 namespace RavenStuff.Things
 {
-  public class Actor
+  public class Actor : Things.RavenDocument
   {
-    private string _id;
     public string Id {
       get {
         return CreateId(Name);
@@ -35,21 +33,9 @@ namespace RavenStuff.Things
       return htmlMovieList;
     }
 
-
-
     public void EnsureMovieExists(string movieName, string movieYear) {
       if (MovieList == null) MovieList = new Dictionary<string, string>();
       if (!MovieList.ContainsKey(movieName)) MovieList.Add(movieName, movieYear);
-    }
-
-    private string CreateId(string name, string year = "") {
-      const int maxLength = 1023;
-      _id = name.Replace(" ", string.Empty) + year;
-      _id = _id.Replace("\\", string.Empty);
-      _id = _id.Replace("'", string.Empty);
-      _id = _id.Replace(".", string.Empty);
-      _id = _id.Replace(",", string.Empty);
-      return _id.Length <= maxLength ? _id : _id.Substring(0, maxLength);
     }
 
     public string HtmlRow() {
