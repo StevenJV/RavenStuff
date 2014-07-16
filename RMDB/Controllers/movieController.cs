@@ -40,6 +40,7 @@ namespace RMDB.Controllers
           var movieInfo = session.Load<Movie>(id);
           if (null == movieInfo) { return RedirectToAction("Index", "Movie"); }
           ViewBag.data = movieInfo;
+          ViewBag.actorList = movieInfo.HtmlActors();
           return View();
         }
       }

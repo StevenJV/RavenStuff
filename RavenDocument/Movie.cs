@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace RavenStuff.Things
@@ -17,23 +18,25 @@ namespace RavenStuff.Things
     public string Director { get; set; }
     public Dictionary<string, string> ActorList { get; set; } // actor name, character name
 
-    private List<string> _htmlActorList;
-    public List<string> HtmlActorList {
-      get { return GethHtmlActorList(); }
-      set { _htmlActorList = value; }
-    }
-
-    private List<string> GethHtmlActorList() {
-      List<string> htmlActorList = new List<string>();
-      if (null != ActorList) {
-        foreach (KeyValuePair<string, string> actor in ActorList) {
-          var htmlLine = "<td><a href=\"/actor/details/" + CreateId(actor.Key) + "\">" + actor.Key + "</a></td><td>" + actor.Value+"</td>";
-          htmlActorList.Add(htmlLine);
-        }
+    public List<string> HtmlActors()
+    {
+      List<string> thisList = new List<string>();
+      foreach (KeyValuePair<string, string> actor in ActorList) {
+        thisList.Add(HtmlActorRow(actor.Key, actor.Value));
       }
-      return htmlActorList;
+      return thisList;
     }
 
+    public string HtmlActorRow(string actorName, string characterName) {
+      var htmlActorLine = "<td><a href=\"/actor/details/" +
+        CreateId(actorName) +
+        "\">" +
+        actorName +
+        "</a></td><td>" +
+        characterName +
+        "</td>";
+      return htmlActorLine;
+    }
 
     public string HtmlRow() {
       string output = "<a href=\"/Movie/Details/" + Id + "\">" + Title + "</a>, " + ReleaseYear;

@@ -21,9 +21,9 @@
     </thead>
     <tbody>
       @{
-        var actorList = ViewBag.data.HtmlActorList as List<string>;
+        var actorList = ViewBag.actorList as List<string>;
         if (actorList != null) {
-          foreach (var actorRow in actorList) {
+          foreach (string actorRow in actorList) {
             <tr>
               @Html.Raw(actorRow)
             </tr>

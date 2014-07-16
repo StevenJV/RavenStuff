@@ -18,7 +18,7 @@
     </thead>
     <tbody>
       @{
-        var movieList = ViewBag.data.HtmlMovieList as List<string>;
+        var movieList = ViewBag.movieList as List<string>;
         if (null != movieList) {
           foreach (var movieRow in movieList) {
             <tr>@Html.Raw(movieRow)</tr>

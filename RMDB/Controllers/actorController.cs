@@ -42,6 +42,8 @@ namespace RMDB.Controllers
           var actorInfo = session.Load<Actor>(id);
           if (null == actorInfo) { return RedirectToAction("Index", "Actor"); }
           ViewBag.data = actorInfo;
+          List<string> aListOfMovies = actorInfo.HtmlMovies();
+          ViewBag.movieList = aListOfMovies;
           return View();
         }
       } 

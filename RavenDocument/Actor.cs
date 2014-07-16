@@ -17,21 +17,16 @@ namespace RavenStuff.Things
     public DateTime BirthDate { get; set; }
 
 
-    private List<string> _htmlMovieList;
-    public List<string> HtmlMovieList {
-      get { return GethHtmlMovieList(); }
-      set { _htmlMovieList = value; }
+    public List<string> HtmlMovies() {
+      List<string> thisList = new List<string>();
+      foreach (KeyValuePair<string, string> movie in MovieList) {
+        thisList.Add(HtmlMovieRow(movie.Key, movie.Value));
+      }
+      return thisList;
     }
 
-    private List<string> GethHtmlMovieList() {
-      List<string> htmlMovieList = new List<string>();
-      if (null != MovieList) {
-        foreach (KeyValuePair<string, string> movie in MovieList) {
-          var htmlLine = "<td><a href=\"/movie/details/" + CreateId(movie.Key) + "\">" + movie.Key + "</a></td><td>"+movie.Value+"</td>";
-          htmlMovieList.Add(htmlLine);
-        }
-      }
-      return htmlMovieList;
+    private string HtmlMovieRow(string title, string character) {
+      return "<td><a href=\"/movie/details/" + CreateId(title) + "\">" + title + "</a></td><td>" + character + "</td>";
     }
 
     public void EnsureMovieExists(string movieName, string movieYear) {
