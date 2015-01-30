@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace RavenStuff.Things
@@ -17,12 +18,13 @@ namespace RavenStuff.Things
     public DateTime BirthDate { get; set; }
 
 
-    public List<string> HtmlMovies() {
-      List<string> thisList = new List<string>();
-      foreach (KeyValuePair<string, string> movie in MovieList) {
-        thisList.Add(HtmlMovieRow(movie.Key, movie.Value));
+    public List<string> HtmlMovies()
+    {
+      if (MovieList != null)
+      {
+        return MovieList.Select(movie => HtmlMovieRow(movie.Key, movie.Value)).ToList();
       }
-      return thisList;
+      else return null;
     }
 
     private string HtmlMovieRow(string title, string character) {
@@ -38,5 +40,7 @@ namespace RavenStuff.Things
       string output = "<a href=\"/Actor/Details/" + Id + "\">" + Name + "</a>";
       return output;
     }
+
+
   }
 }

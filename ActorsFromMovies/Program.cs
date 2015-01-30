@@ -15,6 +15,7 @@ namespace ActorsFromMovies
         documentStore.Initialize();
         using (IDocumentSession movieSession = documentStore.OpenSession()) {
           var movies = movieSession.Advanced.LuceneQuery<Movie>().ToList();
+
           movies.ForEach(movie => {
             Console.WriteLine("----> "+ movie.Title);
                                     using (IDocumentSession actorSession = documentStore.OpenSession())
@@ -29,6 +30,7 @@ namespace ActorsFromMovies
                                     }
           });
           movieSession.SaveChanges();
+
         }
       }
     }

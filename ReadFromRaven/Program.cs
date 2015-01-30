@@ -14,12 +14,12 @@ namespace ReadFromRaven
         documentStore.Initialize();
         using (IDocumentSession session = documentStore.OpenSession()) {
           //just one, by name
-          Movie movieInfo = session.Query<Movie>().FirstOrDefault(a => a.Title == "BladeRunner");
-          if (movieInfo != null) movieInfo.DumpToConsole();
+          //Movie movieInfo = session.Query<Movie>().FirstOrDefault(a => a.Title == "Happy Feet");
+          //if (movieInfo != null) movieInfo.DumpToConsole();
 
           //all
-          //var movies = session.Advanced.LuceneQuery<Movie>().ToList();
-          //movies.ForEach(article => article.DumpToConsole());
+          var movies = session.Advanced.LuceneQuery<Movie>().ToList();
+          movies.ForEach(movie => movie.DumpToConsole());
 
           Console.ReadKey();
 
